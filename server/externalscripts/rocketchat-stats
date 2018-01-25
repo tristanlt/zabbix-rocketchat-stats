@@ -1,0 +1,68 @@
+#!/usr/bin/python
+# coding: utf-8
+# 24 Jan 2018 - Tristan Le Toullec
+
+import requests
+import logging
+import json
+import sys
+
+#logging.basicConfig(level=logging.DEBUG)
+
+### Define RocketChat user !
+url = "https://rocket_chat.fqdn/chat/api"
+user = "zabbix_stats_user"
+password = "password" 
+
+
+def login(api_url, username, password):
+    """
+    Tried to login user on login api
+    
+    Output if auth ok: Dict with authToken and userId keys
+    Output if auth failed: None
+    """
+    # Login Endpoint
+    endpoint = "%s/v1/login" % (api_url)
+    
+    data = { "username": username,
+             "password": password }
+    
+    try:
+        r = requests.post(endpoint, data=data)
+    except:
+        logging.debug("Failed to connect API (login step)")
+        return None
+
+    if not "status" in r.json().keys():
+        logging.debug("Wrong data from API (login stop)")
+        logging.debug(r.json())
+        return None
+    
+    if r.json()['status'] == "success":
+        logging.info("Login Success")
+        return r.json()['data']
+
+def statistics(api_url, username, password, statsname):
+    """
+    print JSON with statistics from API/v1 
+    """
+    statsname
+    endpoint = "%s/v1/statistics" % (api_url)
+    # Login
+    credentials = login(api_url, username, password)       
+    if not credentials:
+        return None
+    
+    # Prepare headers
+    headers = { "X-Auth-Token": credentials['authToken'],
+                "X-User-Id": credentials['userId'] }
+    try:
+        r = requests.get(endpoint, headers=headers)
+    except:
+        logging.debug("Failed to connect API")
+        return None
+    if statsname in r.json()['statistics'].keys():
+        print(r.json()['statistics'][statsname])    
+
+statistics(url, user, password, sys.argv[1])
