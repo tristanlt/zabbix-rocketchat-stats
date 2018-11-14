@@ -27,7 +27,7 @@ import sys
 #logging.basicConfig(level=logging.DEBUG)
 
 ### Define RocketChat user !
-url = "https://rocket_chat.fqdn/chat/api"
+url = "https://rocket_chat.fqdn/api"
 user = "zabbix_stats_user"
 password = "password" 
 

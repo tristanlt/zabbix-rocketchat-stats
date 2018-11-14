@@ -29,7 +29,7 @@ Edit **rocketchat-stats** on your Zabbix server and configure :
 
 ```
 ### Define RocketChat user !
-url = "https://rocket_chat.fqdn/chat/api"
+url = "https://rocket_chat.fqdn/api"
 user = "zabbix_stats_user"
 password = "passw0rd" 
 ```
