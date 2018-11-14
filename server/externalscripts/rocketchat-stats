@@ -44,21 +44,30 @@ def login(api_url, username, password):
     
     data = { "username": username,
              "password": password }
-    
+ 
     try:
         r = requests.post(endpoint, data=data)
     except:
-        logging.debug("Failed to connect API (login step)")
+        logging.critical("Failed to connect API endpoint (login step)")
+        return None
+
+    try:
+        r.json()
+    except:
+        logging.critical("Wrong JSON receive from API, check endpoint (login step)")
         return None
 
     if not "status" in r.json().keys():
-        logging.debug("Wrong data from API (login stop)")
+        logging.critical("Wrong data receive from API (login step)")
         logging.debug(r.json())
         return None
     
     if r.json()['status'] == "success":
         logging.info("Login Success")
         return r.json()['data']
+    else:
+        logging.critical("Login failed, check credentials")
+        return None
 
 def statistics(api_url, username, password, statsname):
     """
@@ -77,8 +86,15 @@ def statistics(api_url, username, password, statsname):
     try:
         r = requests.get(endpoint, headers=headers)
     except:
-        logging.debug("Failed to connect API")
+        logging.critical("Failed to connect API")
         return None
+    
+    try:
+        r.json()
+    except:
+        logging.critical("Wrong JSON receive from API /v1/statistics, check endpoint (statistics step)")
+        return None
+    
     if statsname in r.json()['statistics'].keys():
         print(r.json()['statistics'][statsname])    
 
