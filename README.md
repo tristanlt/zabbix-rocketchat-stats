@@ -15,6 +15,7 @@ This template will track :
   * Rocket Total Private Group Messages (Number of messages since instance creation)
   * Rocket Total Channels (Number of channels)
   * Rocket Total Private Groups (Number of channels)
+  * Rocket Total Livechats (Number of chats)
   
 The monitoring templates issues alerts:
   * Average: if no monitoring data is received withing 10 minutes
@@ -22,7 +23,7 @@ The monitoring templates issues alerts:
   
 The template contains graphs for the measures and a host screen which displays the graphs.
 
-The external script caches the following data in the file **/tmp/rocketchat_stats_<numeric id of the user>.pickle**:
+The external script caches the following data in the file **/tmp/rocketchat\_stats\_<numeric id of the user>.pickle**:
  * monitoring data is cached for 90 seconds for overhead reduction (configurable)
  * login token is cached until fetching of the stats fails to reduce login overhead 
 
