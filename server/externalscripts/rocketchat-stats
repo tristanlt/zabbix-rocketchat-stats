@@ -23,14 +23,20 @@ import requests
 import logging
 import json
 import sys
+import pprint
+import os
+import pickle
+import time
+import stat
 
 #logging.basicConfig(level=logging.DEBUG)
 
-### Define RocketChat user !
+### Define RocketChat login credentials !
 url = "https://rocket_chat.fqdn/api"
 user = "zabbix_stats_user"
-password = "password" 
-
+password = "password"
+# maximum accepted age of the cache file
+max_file_age = 90
 
 def login(api_url, username, password):
     """
@@ -69,33 +75,78 @@ def login(api_url, username, password):
         logging.critical("Login failed, check credentials")
         return None
 
+
+
+def file_age_in_seconds(pathname):
+    return time.time() - os.stat(pathname)[stat.ST_MTIME]
+
 def statistics(api_url, username, password, statsname):
     """
     print JSON with statistics from API/v1 
     """
     statsname
     endpoint = "%s/v1/statistics" % (api_url)
-    # Login
-    credentials = login(api_url, username, password)       
-    if not credentials:
-        return None
-    
-    # Prepare headers
-    headers = { "X-Auth-Token": credentials['authToken'],
-                "X-User-Id": credentials['userId'] }
-    try:
-        r = requests.get(endpoint, headers=headers)
-    except:
-        logging.critical("Failed to connect API")
-        return None
-    
-    try:
-        r.json()
-    except:
-        logging.critical("Wrong JSON receive from API /v1/statistics, check endpoint (statistics step)")
-        return None
-    
-    if statsname in r.json()['statistics'].keys():
-        print(r.json()['statistics'][statsname])    
+
+    EXECUTABLE = os.path.basename(__file__)
+    statusfile = "/tmp/%s_%s.pickle" % (EXECUTABLE, os.getuid())
+
+    data = {}
+    reload_data = True
+    if os.path.exists(statusfile):
+        try:
+            data = pickle.load(open(statusfile, "rb"))
+        except:
+            logging.critical("ERROR: unable to read statusfile %s" % statusfile)
+        file_age = file_age_in_seconds(statusfile)
+        if file_age < max_file_age:
+            reload_data = False
+        else:
+            reload_data = True
+            os.remove(statusfile)
+
+    if reload_data:
+      # Login
+      
+      if "credentials" in data:
+        # use cached auth tolen, because login to active directory/ldap take too much time
+        credentials = data["credentials"]
+      else:
+        credentials = login(api_url, username, password)       
+
+      if not credentials:
+          logging.critical("login failed")
+          return None
+      # Prepare headers
+      headers = { "X-Auth-Token": credentials['authToken'],
+                  "X-User-Id": credentials['userId'] }
+
+      try:
+          r = requests.get(endpoint, headers=headers)
+      except Exception as e:
+          logging.critical("Failed to connect API: %s" % e)
+          return None
+     
+      try:
+          data = r.json()
+      except Exception as e:
+          logging.critical("Wrong JSON receive from API /v1/statistics, check endpoint (statistics step): %s" % e)
+          return None
+
+      try:
+         data["credentials"] = credentials
+         pickle.dump(data, open(statusfile, "wb"))
+      except Exception as e:
+         logging.critical("but storing status to %s failed : %s" % (statusfile,e))
+
+    if statsname == "all":
+        pprint.pprint(data['statistics'])
+    elif statsname in data['statistics'].keys():
+        print(data['statistics'][statsname])    
+
+if len(sys.argv) <= 1:
+  print("rocketchat-stats all|arg")
+  sys.exit(1)
 
 statistics(url, user, password, sys.argv[1])
+
+# vim: ai et ts=2 shiftwidth=2 expandtab
