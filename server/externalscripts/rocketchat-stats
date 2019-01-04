@@ -135,6 +135,7 @@ def statistics(api_url, username, password, statsname):
 
         try:
             data["credentials"] = credentials
+            os.umask(0o077)
             pickle.dump(data, open(statusfile, "wb"))
         except Exception as e:
             logging.critical("but storing status to %s failed : %s" % (statusfile, e))
