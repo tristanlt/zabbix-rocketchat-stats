@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2019-02-10T13:33:02Z</date>
+    <date>2019-02-10T17:32:05Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -23,47 +23,6 @@
                 </application>
             </applications>
             <items>
-                <item>
-                    <name>Rocket Active Users</name>
-                    <type>10</type>
-                    <snmp_community/>
-                    <snmp_oid/>
-                    <key>rocketchat-stats[&quot;activeUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
-                    <delay>1h</delay>
-                    <history>14d</history>
-                    <trends>365d</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Custom - Service - Rocketchat</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <master_item/>
-                </item>
                 <item>
                     <name>Rocket Away Users</name>
                     <type>10</type>
@@ -687,7 +646,7 @@
                             <dynamic>0</dynamic>
                             <sort_triggers>0</sort_triggers>
                             <resource>
-                                <name>Rocketchat Exchanges</name>
+                                <name>Rocketchat Messages</name>
                                 <host>Custom - Service - Rocketchat</host>
                             </resource>
                             <max_columns>3</max_columns>
@@ -736,12 +695,12 @@
         <graph>
             <name>Rocketchat Exchanges</name>
             <width>900</width>
-            <height>200</height>
+            <height>300</height>
             <yaxismin>0.0000</yaxismin>
             <yaxismax>100.0000</yaxismax>
             <show_work_period>1</show_work_period>
             <show_triggers>1</show_triggers>
-            <type>0</type>
+            <type>1</type>
             <show_legend>1</show_legend>
             <show_3d>0</show_3d>
             <percent_left>0.0000</percent_left>
@@ -772,7 +731,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalPrivateGroups&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
+                        <key>rocketchat-stats[&quot;totalLivechat&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -784,7 +743,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalLivechat&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
+                        <key>rocketchat-stats[&quot;totalPrivateGroups&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -792,17 +751,17 @@
         <graph>
             <name>Rocketchat Messages</name>
             <width>900</width>
-            <height>300</height>
+            <height>200</height>
             <yaxismin>0.0000</yaxismin>
             <yaxismax>100.0000</yaxismax>
             <show_work_period>1</show_work_period>
             <show_triggers>1</show_triggers>
-            <type>0</type>
+            <type>1</type>
             <show_legend>1</show_legend>
             <show_3d>0</show_3d>
             <percent_left>0.0000</percent_left>
             <percent_right>0.0000</percent_right>
-            <ymin_type_1>0</ymin_type_1>
+            <ymin_type_1>1</ymin_type_1>
             <ymax_type_1>0</ymax_type_1>
             <ymin_item_1>0</ymin_item_1>
             <ymax_item_1>0</ymax_item_1>
@@ -816,7 +775,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalDirectMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
+                        <key>rocketchat-stats[&quot;totalDirect&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -828,7 +787,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalPrivateGroupMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
+                        <key>rocketchat-stats[&quot;totalDirectMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -840,19 +799,19 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalChannelMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
+                        <key>rocketchat-stats[&quot;totalLivechatMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
                     <sortorder>3</sortorder>
                     <drawtype>0</drawtype>
-                    <color>BB00BB</color>
+                    <color>BBBB00</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>4</calc_fnc>
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalLivechatMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
+                        <key>rocketchat-stats[&quot;totalPrivateGroupMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -860,7 +819,7 @@
         <graph>
             <name>Rocketchat Total Messages</name>
             <width>900</width>
-            <height>300</height>
+            <height>200</height>
             <yaxismin>0.0000</yaxismin>
             <yaxismax>100.0000</yaxismax>
             <show_work_period>1</show_work_period>
@@ -870,17 +829,17 @@
             <show_3d>0</show_3d>
             <percent_left>0.0000</percent_left>
             <percent_right>0.0000</percent_right>
-            <ymin_type_1>0</ymin_type_1>
+            <ymin_type_1>1</ymin_type_1>
             <ymax_type_1>0</ymax_type_1>
             <ymin_item_1>0</ymin_item_1>
             <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
                     <sortorder>0</sortorder>
-                    <drawtype>0</drawtype>
+                    <drawtype>5</drawtype>
                     <color>1A7C11</color>
                     <yaxisside>0</yaxisside>
-                    <calc_fnc>7</calc_fnc>
+                    <calc_fnc>4</calc_fnc>
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
@@ -902,7 +861,7 @@
             <show_3d>0</show_3d>
             <percent_left>0.0000</percent_left>
             <percent_right>0.0000</percent_right>
-            <ymin_type_1>1</ymin_type_1>
+            <ymin_type_1>0</ymin_type_1>
             <ymax_type_1>0</ymax_type_1>
             <ymin_item_1>0</ymin_item_1>
             <ymax_item_1>0</ymax_item_1>
@@ -910,19 +869,7 @@
                 <graph_item>
                     <sortorder>0</sortorder>
                     <drawtype>0</drawtype>
-                    <color>00BB00</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>4</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;onlineUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
-                    </item>
-                </graph_item>
-                <graph_item>
-                    <sortorder>1</sortorder>
-                    <drawtype>0</drawtype>
-                    <color>BB0000</color>
+                    <color>EE0000</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>4</calc_fnc>
                     <type>0</type>
@@ -932,15 +879,15 @@
                     </item>
                 </graph_item>
                 <graph_item>
-                    <sortorder>2</sortorder>
+                    <sortorder>1</sortorder>
                     <drawtype>0</drawtype>
-                    <color>2774A4</color>
+                    <color>00BB00</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>4</calc_fnc>
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;activeUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
+                        <key>rocketchat-stats[&quot;onlineUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
             </graph_items>
