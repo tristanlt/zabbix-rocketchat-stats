@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2018-12-31T12:42:58Z</date>
+    <date>2019-02-10T13:33:02Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -28,7 +28,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;activeUsers&quot;]</key>
+                    <key>rocketchat-stats[&quot;activeUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>1h</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -69,7 +69,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;awayUsers&quot;]</key>
+                    <key>rocketchat-stats[&quot;awayUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>120s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -110,7 +110,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;onlineUsers&quot;]</key>
+                    <key>rocketchat-stats[&quot;onlineUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>120s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -151,7 +151,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;totalChannelMessages&quot;]</key>
+                    <key>rocketchat-stats[&quot;totalChannelMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>120s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -197,7 +197,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;totalChannels&quot;]</key>
+                    <key>rocketchat-stats[&quot;totalChannels&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>3600s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -238,7 +238,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;totalDirect&quot;]</key>
+                    <key>rocketchat-stats[&quot;totalDirect&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>120s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -284,7 +284,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;totalDirectMessages&quot;]</key>
+                    <key>rocketchat-stats[&quot;totalDirectMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>120s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -330,7 +330,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;totalLivechat&quot;]</key>
+                    <key>rocketchat-stats[&quot;totalLivechat&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>3600s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -371,7 +371,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;totalLivechatMessages&quot;]</key>
+                    <key>rocketchat-stats[&quot;totalLivechatMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>120s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -417,7 +417,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;totalMessages&quot;]</key>
+                    <key>rocketchat-stats[&quot;totalMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>120s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -458,7 +458,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;totalPrivateGroupMessages&quot;]</key>
+                    <key>rocketchat-stats[&quot;totalPrivateGroupMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>120s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -504,7 +504,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;totalPrivateGroups&quot;]</key>
+                    <key>rocketchat-stats[&quot;totalPrivateGroups&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>3600s</delay>
                     <history>14d</history>
                     <trends>365d</trends>
@@ -545,7 +545,7 @@
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>rocketchat-stats[&quot;version&quot;]</key>
+                    <key>rocketchat-stats[&quot;version&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     <delay>3600s</delay>
                     <history>90d</history>
                     <trends>0</trends>
@@ -584,7 +584,20 @@
             </items>
             <discovery_rules/>
             <httptests/>
-            <macros/>
+            <macros>
+                <macro>
+                    <macro>{$ROCKETCHAT_URL}</macro>
+                    <value>https://rocket_chat.fqdn/api</value>
+                </macro>
+                <macro>
+                    <macro>{$ROCKETCHAT_USERAPI_ID}</macro>
+                    <value>ujjdjdhhhh7822232</value>
+                </macro>
+                <macro>
+                    <macro>{$ROCKETCHAT_USERAPI_TOKEN}</macro>
+                    <value>gf-PAT-l_W4jhddggdggsshdhdhdhkkkjfbbdbddt332</value>
+                </macro>
+            </macros>
             <templates/>
             <screens>
                 <screen>
@@ -687,7 +700,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Custom - Service - Rocketchat:rocketchat-stats[&quot;onlineUsers&quot;].nodata(10m)}=1</expression>
+            <expression>{Custom - Service - Rocketchat:rocketchat-stats[&quot;onlineUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}].nodata(10m)}=1</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Rocketchat no data for 10 minutes</name>
@@ -703,7 +716,7 @@
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Custom - Service - Rocketchat:rocketchat-stats[&quot;version&quot;].change()}=1</expression>
+            <expression>{Custom - Service - Rocketchat:rocketchat-stats[&quot;version&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}].change()}=1</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Rocketchat Version changed to {ITEM.VALUE1}</name>
@@ -747,7 +760,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalChannels&quot;]</key>
+                        <key>rocketchat-stats[&quot;totalChannels&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -759,7 +772,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalPrivateGroups&quot;]</key>
+                        <key>rocketchat-stats[&quot;totalPrivateGroups&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -771,7 +784,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalLivechat&quot;]</key>
+                        <key>rocketchat-stats[&quot;totalLivechat&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -803,7 +816,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalDirectMessages&quot;]</key>
+                        <key>rocketchat-stats[&quot;totalDirectMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -815,7 +828,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalPrivateGroupMessages&quot;]</key>
+                        <key>rocketchat-stats[&quot;totalPrivateGroupMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -827,7 +840,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalChannelMessages&quot;]</key>
+                        <key>rocketchat-stats[&quot;totalChannelMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -839,7 +852,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalLivechatMessages&quot;]</key>
+                        <key>rocketchat-stats[&quot;totalLivechatMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -871,7 +884,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;totalMessages&quot;]</key>
+                        <key>rocketchat-stats[&quot;totalMessages&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -903,7 +916,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;onlineUsers&quot;]</key>
+                        <key>rocketchat-stats[&quot;onlineUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -915,7 +928,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;awayUsers&quot;]</key>
+                        <key>rocketchat-stats[&quot;awayUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -927,7 +940,7 @@
                     <type>0</type>
                     <item>
                         <host>Custom - Service - Rocketchat</host>
-                        <key>rocketchat-stats[&quot;activeUsers&quot;]</key>
+                        <key>rocketchat-stats[&quot;activeUsers&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}]</key>
                     </item>
                 </graph_item>
             </graph_items>

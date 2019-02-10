@@ -29,24 +29,22 @@ The external script caches the following data in the file **/tmp/rocketchat\_sta
 
 # Installation
 
-  * Zabbix server should have Python3
+
+  * Install python3 to your zabbix server/proxy
   * Copy **rocketchat-stats** from  **server/externalscripts/** to your Zabbix server to **ExternalScripts** location (ie. /var/lib/zabbix/externals-scripts/)
   * Import RocketChat-Stats.xml from **templates/** into your Zabbix server
-  * Add Template to host which run RocketChat 
-
-# Configuration
-
-On RocketChat, add an user with a role which contains permissions **view-statistics**. Yes, admin role had this permission, but is it really suitable ?
-
-Edit **rocketchat-stats** on your Zabbix server and configure :
-
+  * Add an user with a role which contains permissions **view-statistics**
+  * Create a rocketchat api keypair
+    * Login user
+    * Profile -> My Account -> Security -> Personal Access Tokens -> ...
+  * Test access on the commandline
 ```
-### Define RocketChat user !
-url = "https://rocket_chat.fqdn/api"
-user = "zabbix_stats_user"
-password = "passw0rd"
-max_file_age = 90 # maximum accepted age of the cache file
+sudo -u zabbix /var/lib/zabbix/externals-scripts/rocketchat-stats all https://rocket_chat.fqdn/api ujjdjdhhhh7822232 gf-PAT-l_W4jhddggdggsshdhdhdhkkkjfbbdbddt332
 ```
+  * Assign and configure the template to the host which is running zabbix
+    * Open the macro view
+    * Display the inherited values by "Inherited and host macros"
+    * Overwrite the ```{$ROCKETCHAT_``` macros by your values 
 
 # TODO
 
