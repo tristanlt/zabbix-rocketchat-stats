@@ -31,61 +31,19 @@ import stat
 
 # logging.basicConfig(level=logging.DEBUG)
 
-### Define RocketChat login credentials !
-url = "https://rocket_chat.fqdn/api"
-user = "zabbix_stats_user"
-password = "password"
 # maximum accepted age of the cache file
 max_file_age = 90
-
-
-def login(api_url, username, password):
-    """
-    Tried to login user on login api
-    
-    Output if auth ok: Dict with authToken and userId keys
-    Output if auth failed: None
-    """
-    # Login Endpoint
-    endpoint = "%s/v1/login" % (api_url)
-
-    data = {"username": username,
-            "password": password}
-
-    try:
-        r = requests.post(endpoint, data=data)
-    except:
-        logging.critical("Failed to connect API endpoint (login step)")
-        return None
-
-    try:
-        r.json()
-    except:
-        logging.critical("Wrong JSON receive from API, check endpoint (login step)")
-        return None
-
-    if not "status" in r.json().keys():
-        logging.critical("Wrong data receive from API (login step)")
-        logging.debug(r.json())
-        return None
-
-    if r.json()['status'] == "success":
-        logging.info("Login Success")
-        return r.json()['data']
-    else:
-        logging.critical("Login failed, check credentials")
-        return None
 
 
 def file_age_in_seconds(pathname):
     return time.time() - os.stat(pathname)[stat.ST_MTIME]
 
 
-def statistics(api_url, username, password, statsname):
+def statistics(api_url, headers_api, statsname):
     """
     print JSON with statistics from API/v1 
     """
-    statsname
+
     endpoint = "%s/v1/statistics" % (api_url)
 
     EXECUTABLE = os.path.basename(__file__)
@@ -106,35 +64,20 @@ def statistics(api_url, username, password, statsname):
             os.remove(statusfile)
 
     if reload_data:
-        # Login
-
-        if "credentials" in data:
-            # use cached auth tolen, because login to active directory/ldap take too much time
-            credentials = data["credentials"]
-        else:
-            credentials = login(api_url, username, password)
-
-        if not credentials:
-            logging.critical("login failed")
-            return None
-        # Prepare headers
-        headers = {"X-Auth-Token": credentials['authToken'],
-                   "X-User-Id": credentials['userId']}
-
         try:
-            r = requests.get(endpoint, headers=headers)
+            r = requests.get(endpoint, headers=headers_api)
         except Exception as e:
             logging.critical("Failed to connect API: %s" % e)
             return None
 
         try:
             data = r.json()
+            print(data)
         except Exception as e:
             logging.critical("Wrong JSON receive from API /v1/statistics, check endpoint (statistics step): %s" % e)
             return None
 
         try:
-            data["credentials"] = credentials
             os.umask(0o077)
             pickle.dump(data, open(statusfile, "wb"))
         except Exception as e:
@@ -146,10 +89,14 @@ def statistics(api_url, username, password, statsname):
         print(data['statistics'][statsname])
 
 
-if len(sys.argv) <= 1:
-    print("rocketchat-stats all|arg")
+if len(sys.argv) < 5:
+    print("rocketchat-stats <api-url> <api-user-id> <api access key> all|<arg>")
     sys.exit(1)
 
-statistics(url, user, password, sys.argv[1])
+url = sys.argv[2]
+headers = {"X-Auth-Token": sys.argv[4],
+           "X-User-Id": sys.argv[3]}
+
+statistics(url, headers, sys.argv[1])
 
 # vim: ai et ts=2 shiftwidth=2 expandtab
