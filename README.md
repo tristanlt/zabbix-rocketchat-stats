@@ -6,6 +6,8 @@ This repository contains some file to monitor RocketChat with Zabbix.
 
 The template was tested on Zabbix 3.4.
 
+This script needs *Personnal Access Token* feature on RocketChat. 
+
 # Monitoring spectre
 
 This template will track :
@@ -29,14 +31,14 @@ The external script caches the following data in the file **/tmp/rocketchat\_sta
 
 # Installation
 
-
   * Install python3 to your zabbix server/proxy
   * Copy **rocketchat-stats** from  **server/externalscripts/** to your Zabbix server to **ExternalScripts** location (ie. /var/lib/zabbix/externals-scripts/)
   * Import RocketChat-Stats.xml from **templates/** into your Zabbix server
-  * Add an user with a role which contains permissions **view-statistics**
+  * Add a RocketChat user with a role which contains permissions **view-statistics**
   * Create a rocketchat api keypair
     * Login user
-    * Profile -> My Account -> Security -> Personal Access Tokens -> ...
+    * Profile -> My Account -> Personal Access Tokens
+    * Create a Personal Token 
   * Test access on the commandline
 ```
 sudo -u zabbix /var/lib/zabbix/externals-scripts/rocketchat-stats all https://rocket_chat.fqdn/api ujjdjdhhhh7822232 gf-PAT-l_W4jhddggdggsshdhdhdhkkkjfbbdbddt332
@@ -44,7 +46,7 @@ sudo -u zabbix /var/lib/zabbix/externals-scripts/rocketchat-stats all https://ro
   * Assign and configure the template to the host which is running zabbix
     * Open the macro view
     * Display the inherited values by "Inherited and host macros"
-    * Overwrite the ```{$ROCKETCHAT_``` macros by your values 
+    * Overwrite the ```{$ROCKETCHAT_``` macros by your values
 
 # TODO
 

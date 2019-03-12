@@ -89,7 +89,7 @@ def statistics(api_url, headers_api, statsname):
 
 
 if len(sys.argv) < 5:
-    print("rocketchat-stats <api-url> <api-user-id> <api access key> all|<arg>")
+    print("rocketchat-stats all|<arg> <api-url> <api-user-id> <api access key>")
     sys.exit(1)
 
 url = sys.argv[2]
