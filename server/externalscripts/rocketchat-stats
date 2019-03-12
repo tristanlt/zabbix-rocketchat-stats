@@ -72,7 +72,6 @@ def statistics(api_url, headers_api, statsname):
 
         try:
             data = r.json()
-            print(data)
         except Exception as e:
             logging.critical("Wrong JSON receive from API /v1/statistics, check endpoint (statistics step): %s" % e)
             return None
