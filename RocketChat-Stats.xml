@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2019-02-10T17:40:07Z</date>
+    <date>2019-10-15T06:48:10Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -706,7 +706,7 @@
             <name>Rocketchat no data for 10 minutes</name>
             <correlation_mode>0</correlation_mode>
             <correlation_tag/>
-            <url/>
+            <url>{$ROCKETCHAT_URL}/../</url>
             <status>0</status>
             <priority>3</priority>
             <description/>
@@ -716,13 +716,13 @@
             <tags/>
         </trigger>
         <trigger>
-            <expression>{Custom - Service - Rocketchat:rocketchat-stats[&quot;version&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}].change()}=1</expression>
+            <expression>{Custom - Service - Rocketchat:rocketchat-stats[&quot;version&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}].last(3d)}&lt;&gt;{Custom - Service - Rocketchat:rocketchat-stats[&quot;version&quot;,{$ROCKETCHAT_URL},{$ROCKETCHAT_USERAPI_ID},{$ROCKETCHAT_USERAPI_TOKEN}].last()}</expression>
             <recovery_mode>0</recovery_mode>
             <recovery_expression/>
             <name>Rocketchat Version changed to {ITEM.VALUE1}</name>
             <correlation_mode>0</correlation_mode>
             <correlation_tag/>
-            <url/>
+            <url>{$ROCKETCHAT_URL}/../</url>
             <status>0</status>
             <priority>1</priority>
             <description/>
