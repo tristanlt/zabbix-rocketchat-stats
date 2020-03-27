@@ -48,6 +48,22 @@ sudo -u zabbix /var/lib/zabbix/externals-scripts/rocketchat-stats all https://ro
     * Display the inherited values by "Inherited and host macros"
     * Overwrite the ```{$ROCKETCHAT_``` macros by your values
 
+# Debug mode
+
+* increase verbosity
+* print all received data from RocketChat API to terminal
+* always get data from RocketChat API instead of using cache file
+
+Usage :
+
+```
+export ROCKETCHAT_STATS_DEBUG="True"
+export RC_API='https://rocket_chat.fqdn/api'
+export RC_ID='ujjdjdhhhh7822232'
+export RC_TOKEN='gf-PAT-l_W4jhddggdggsshdhdhdhkkkjfbbdbddt332'
+python rocketchat-stats onlineUsers ${RC_API} ${RC_ID} ${RC_TOKEN}
+```
+
 # TODO
 
 These checks are on our roadmap.
