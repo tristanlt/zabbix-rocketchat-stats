@@ -89,9 +89,14 @@ def statistics(api_url, headers_api, statsname):
             logging.critical("but storing status to %s failed : %s" % (statusfile, e))
 
     if statsname == "all":
-        pprint.pprint(data['statistics'])
-    elif statsname in data['statistics'].keys():
+        pprint.pprint(data)
+    elif 'statistics' in data and statsname in data['statistics'].keys():
         print(data['statistics'][statsname])
+    elif statsname in data:
+        print(data[statsname])
+    else:
+        print("unable to find statsname %s" % statsname)
+        sys.exit(1)
 
 
 if len(sys.argv) < 5:
