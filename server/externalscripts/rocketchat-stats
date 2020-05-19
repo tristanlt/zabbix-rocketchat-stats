@@ -29,7 +29,10 @@ import pickle
 import time
 import stat
 
-# logging.basicConfig(level=logging.DEBUG)
+debugmode = False
+if os.getenv('ROCKETCHAT_STATS_DEBUG', 'False') in ['true', 'True', 'yes', 'certainly']:
+    debugmode = True
+    logging.basicConfig(level=logging.DEBUG)
 
 # maximum accepted age of the cache file
 max_file_age = 90
@@ -60,21 +63,24 @@ def statistics(api_url, headers_api, statsname):
         if file_age < max_file_age:
             reload_data = False
         else:
+            logging.debug("Statusfile reloading data from RC %s" % statusfile)
             reload_data = True
             os.remove(statusfile)
 
-    if reload_data:
+    if reload_data or debugmode:
         try:
             r = requests.get(endpoint, headers=headers_api)
         except Exception as e:
             logging.critical("Failed to connect API: %s" % e)
             return None
+        logging.debug("RC API answers status %s" % r)
 
         try:
             data = r.json()
         except Exception as e:
             logging.critical("Wrong JSON receive from API /v1/statistics, check endpoint (statistics step): %s" % e)
             return None
+        logging.debug("RC API answers data  %s" % data)
 
         try:
             os.umask(0o077)
